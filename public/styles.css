@@ -1,0 +1,39 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #fdfcfc;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+#taskForm {
+    background-color: #ededee;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+#taskList {
+    max-height: 400px; /* Set a maximum height for the task list container */
+    overflow-y: auto; /* Enable vertical scrolling */
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+}
+
+.task {
+    /* background-color: #fff; */
+    background-color: #ededee;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    transition: transform 0.2s ease-in-out;
+}
+
+/* .task:hover {
+    transform: scale(1.02);
+} */

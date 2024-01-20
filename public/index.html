@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Task Manager</title>
+</head>
+<body>
+    <div id="taskForm">
+        <label for="title">Course Title:</label>
+        <input type="text" id="title" placeholder="Enter task title">
+        <label for="description">Description:</label>
+        <textarea id="description" placeholder="Enter task description"></textarea>
+        <label for="category">Category:</label>
+        <select id="category" name="category">
+        <option value="assignment">Assignment</option>
+        <option value="others">Others</option>
+        </select>
+        <label for="dueDate">Due Date:</label>
+        <input type="date" id="dueDate">
+        <button onclick="createTask()">Create Task</button>
+    </div>
+
+    <div id="taskList" class="task-container"></div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
