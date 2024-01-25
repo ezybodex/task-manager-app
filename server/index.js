@@ -33,6 +33,19 @@ app.put('/api/tasks/:index', (req, res) => {
     // res.json({ success: true });
 });
 
+//new
+
+// GET endpoint to retrieve tasks sorted by due date
+app.get('/api/tasks', (req, res) => {
+    const sortedTasks = tasks.slice().sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
+    res.json(sortedTasks);
+});
+
+
+// new
+
+
+
 app.delete('/api/tasks/:index', (req, res) => {
     const { index } = req.params;
     tasks.splice(index, 1);

@@ -1,6 +1,6 @@
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #fdfcfc;
+    font-family: 'Calibri';
+    background-color: #2b064e;
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -9,10 +9,23 @@ body {
     height: 100vh;
 }
 
-#taskForm {
-    background-color: #ededee;
+#titleContainer {
+    text-align: left;
     padding: 20px;
-    border-radius: 10px;
+    color: rgb(248, 249, 250);
+}
+
+#pageTitle {
+    font-family: 'Lucida Sans Regular';
+    font-size: 40px; /* Adjust the size as needed */
+    font-weight: bold;
+    margin: 0;
+}
+
+#taskForm {
+    background-color: #7f7ff7;
+    padding: 20px;
+    /* border-radius: 10px; */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
 }
@@ -28,10 +41,22 @@ body {
     /* background-color: #fff; */
     background-color: #ededee;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    /* border-radius: 5px; */
     padding: 10px;
     margin-bottom: 10px;
     transition: transform 0.2s ease-in-out;
+}
+/* new  */
+.orange-task {
+    background-color: orange;
+}
+
+.red-task {
+    background-color: red;
+}
+
+.default-task {
+    background-color: #ededee; /* Your default task color */
 }
 
 /* .task:hover {

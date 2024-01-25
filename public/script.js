@@ -29,27 +29,68 @@ function createTask() {
      });
 }
 
-function displayTasks(tasks) {
-    const taskList = document.getElementById('taskList');
-    taskList.innerHTML = '';
+// function displayTasks(tasks) {
+//     const taskList = document.getElementById('taskList');
+//     taskList.innerHTML = '';
 
-    tasks.forEach((task, index) => {
-        const taskElement = document.createElement('div');
-        taskElement.classList.add('task');
-        taskElement.innerHTML = `
-            <strong>${task.title}</strong><br>
-            Category: ${task.category}<br>
-            Description: ${task.description}<br>
-            Due Date: ${task.dueDate}<br>
-            Completed: ${task.completed ? 'Yes' : 'No'}<br>
-            <button onclick="completeTask(${index})">Complete Task</button>
-            <button onclick="deleteTask(${index})">Delete Task</button>
-        `;
-        taskList.appendChild(taskElement);
-    });
+//     tasks.forEach((task, index) => {
+//         const taskElement = document.createElement('div');
+//         taskElement.classList.add('task');
+//         taskElement.classList.add(getTaskColorClass(task.dueDate)); //new
+//         taskElement.innerHTML = `
+//             <strong>${task.title}</strong><br>
+//             Category: ${task.category}<br>
+//             Description: ${task.description}<br>
+//             Due Date: ${task.dueDate}<br>
+//             Completed: ${task.completed ? 'Yes' : 'No'}<br>
+//             <button onclick="completeTask(${index})">Complete Task</button>
+//             <button onclick="deleteTask(${index})">Delete Task</button>
+//         `;
+//         taskList.appendChild(taskElement);
+//     });
+// }
 
+
+// new
+    function displayTasks(tasks) {
+        const taskList = document.getElementById('taskList');
+        taskList.innerHTML = '';
     
-}
+        const filterCategory = document.getElementById('filterCategory').value;
+    
+        tasks.forEach((task, index) => {
+            if (filterCategory === 'all' || task.category === filterCategory) {
+                const taskElement = document.createElement('div');
+                taskElement.classList.add(getTaskColorClass(task.dueDate));
+                taskElement.classList.add('task');
+                taskElement.innerHTML = `
+                    <strong>${task.title}</strong><br>
+                    Category: ${task.category}<br>
+                    Description: ${task.description}<br>
+                    Due Date: ${task.dueDate}<br>
+                    Completed: ${task.completed ? 'Yes' : 'No'}<br>
+                    <button onclick="completeTask(${index})">Complete Task</button>
+                    <button onclick="deleteTask(${index})">Delete Task</button>
+                `;
+                taskList.appendChild(taskElement);
+            }
+        });
+    }
+
+    function filterTasksByCategory() {
+        // Fetch tasks again and update the display
+        axios.get('/api/tasks')
+            .then(response => {
+                tasks = response.data;
+                displayTasks(tasks);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
+    // new
+    
+
 
 function completeTask(index) {
     // tasks[index].completed = true;
@@ -96,3 +137,16 @@ function deleteTask(index) {
          // Handle error (if needed)
          console.error(error);
      });
+//////new
+     function getTaskColorClass(dueDate) {
+        const taskDueDate = new Date(dueDate);
+        const oneDay = 24 * 60 * 60 * 1000; // One day in milliseconds
+    
+        if (taskDueDate.getTime() - currentDate.getTime() < oneDay) {
+            return 'orange-task';
+        } else if (taskDueDate.toISOString().split('T')[0] === formattedCurrentDate) {
+            return 'red-task';
+        } else {
+            return 'default-task';
+        }
+    }
